@@ -184,46 +184,26 @@ tency as an auxiliary loss
     </div>
 	    <h2>Experiments</h2>
 	    <p>
-	    <b> Datasets Used </b>: nuScenes and KITTI <br> <br>
-	    <b> Evaluation Metric </b>: EPE, Acc1 (0.05), Acc2 (1.0) <br> <br>
-	    <b> Self-Supervised training on nuScenes </b> <br>
-	    We begin with training our self-supervised model on nuScenes dataset using the combination of Nearest Neighbor Loss and Anchored Cycle loss. Since we wish to use Flownet3D as our scene flow estimation module, we initialize our network with Flownet3D weights pretrained on FlyingThing3D dataset.  <br> <br>
-	    <b> Self-Supervised training on nuScenes and KITTI </b> <br>
-	      Once the model has been trained on nuScenes, we fine-tune on KITTI in a self-supervised manner. For the comparison with the baseline, we use the Flownet3D model pretrained on FlyingThings3D without any fine-tuning on KITTI. <br> <br>	     
-	    <b> Supervised fine-tuning on KITTI </b> <br> 
-	    In order to evaluate the performance of our method on the real-world datasets having ground truth flow annotations, we fine tune our model on KITTI. For our method, we pretrain the model on nuScences using our self-supervised loss, and then introduce the KITTI data for supervised fine tuning. For the baseline, we use Flownet3d which is supervised fine tuned over the KITTI dataset. Both models are initialized with Flownet3D weights pretrained on FlyingThings3D.
-	    </p>
+	    <b> Datasets Used </b>: ShapeNet and Semantic KITTI <br> <br>
+	    <b> Evaluation Metric </b>: Chamfer Distance (CD), Precision, Coverage <br> <br>
     </div>
     
-    
-    
-  
-  
-  
 
   <div class="content">
     <h2> Qualitative results</h2>
     <div id="results" style="width:100%; text-align: left">
-      <a href="./files/self-super-kitti">
-        <img src="./files/self-super-kitti" width="97%" alt="examples of different attributes" style="padding-bottom:25px;display:block; margin: 0 auto;">
-        <figcaption>Scene flow estimation between point cloud at time 't' <font color="red">(red)</font> and 't+1' <font color="green">(green)</font> from KITTI dataset trained without any labeled lidar data. Our self-supervised method, trained on nuScenes and fine tuned on KITTI using self-supervised loss shown in <font color="blue">(blue)</font> and baseline training method, with no fine tuning, is shown in <font color="magenta">(purple)</font>.  All models are pretrained on FlyingThings3D using a supervised loss. In the absence of any lidar annotations, our method clearly outperforms the baseline method, which over estimate the flow in many regions. (Best viewed in color)</figcaption>
+      <a href="./files/main_results_shapenet_2.png">
+        <img src="./files/main_results_shapenet_2.png" width="97%" alt="examples of different attributes" style="padding-bottom:25px;display:block; margin: 0 auto;">
+        <figcaption>Qualitative results on the ShapeNet dataset compared with our baseline, DPC. Our method is better able to reconstruct fine-grained 
+		object details (back portion of the carand engines on the airplane), produces fewer noisy points for the airplane and produces moreuniformly 
+		distributed points in the chairs than the baseline. </figcaption>
         <br><br>
       </a>
-      <a href="./files/nuscenes_comparison">
-        <img src="./files/nuscenes_comparison" width="97%" alt="examples of different scales" style="padding-bottom:25px;display:block; margin: 0 auto;">
-        <figcaption>Comparison of our self-supervised method vs baseline on unannotated nuScenes dataset. Scene flow is computed  between point cloud at time 't' <font color="red">(red)</font> and 't+1' <font color="green">(green)</font> and the transformed cloud in shown in <font color="blue">(blue)</font>. In our method, the predicted point cloud has a much better overlap with the point cloud of the next timestamp as compared to the baseline. Since nuScenes dataset does not provide any scene flow annotation, the supervised approaches cannot be fined tuned to this environment.</figcaption>
+      <a href="./files/Ablations_Figure_renamed.png">
+        <img src="./files/Ablations_Figure_renamed.png" width="97%" alt="examples of different scales" style="padding-bottom:25px;display:block; margin: 0 auto;">
+        <figcaption> Qualitative results for ablation study on ShapeNet and KITTI. Without inpainting,local loss, global loss, 
+		and multi-view loss, the network yields noisy output. </figcaption>
       </a>
-      <br><br>
-      <a href="./files/supervised_new">
-        <img src="./files/supervised_new" width="97%" alt="examples of different scales" style="padding-bottom:25px;display:block; margin: 0 auto;">
-        <figcaption>Improved scene flow estimation on annotated lidar data from the KITTI dataset between point clout at time 't' <font color="red">(red)</font> and 't+1' <font color="green">(green)</font>. Our method, which is fine tuned on nuScenes using the self-supervised loss and KITTI using a supervised loss is shown in <font color="blue">(blue)</font>. The baseline method is fine tuned only on KITTI using a supervised loss and is shown in <font color="magenta">(purple)</font>. While in aggregate, both methods well estimate the scene flow, the augmented training method <font color="blue">(blue)</font> is able to more closely match the next frame point cloud <font color="green">(green)</font>. In several of the cropped scenes, the purely supervised method <font color="magenta">(purple)</font> underestimates the flow, staying too close to the initial point cloud <font color="red">(red)</font>. (Best viewed in color)</figcaption>
-      </a>
-      <br><br>
-      <a href="./files/cycle_vs_knn">
-        <img src="./files/cycle_vs_knn" width="50%" alt="examples of different scales" style="padding-bottom:25px;display:block; margin: 0 auto;">
-        <figcaption>Comparison of levels of supervision on KITTI dataset. The nearest neighbor + anchored cycle loss is used for nuScenes (self-supervised) and KITTI (self-supervised).</figcaption>
-      </a>
-
     </div>
   </div>
 
