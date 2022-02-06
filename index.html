@@ -85,10 +85,9 @@ synthetic and natural occlusions, the network predicts a complete point cloud.
 	    <div id="overview" float: left">
 	    </div>
 	    <p>
-	      For the task of scene flow estimation, we have a temporal sequence of point clouds recorded from LiDAR: point cloud <b>X</b> as the point cloud captured at time (t) and point cloud <b>Y</b> captured at time (t+1). Each point p(i) = {x(i),f(i)} in point cloud (X) contains the Cartesian position of the point and features such as color, intensity, etc. </p>
-<p>
-The scene flow between the two point clouds describes the movement of each Cartesian point <b>x(i)</b> in point cloud <b>X</b> to its corresponding position <b>x(i)'</b> in the scene described by point cloud <b>Y</b>.
-</p>
+	      The point cloud completion problem can be defined as follows: given an incomplete set of
+sparse 3D points X, sampled from a partial view of an underlying dense object geometry G,
+the goal is to predict a new set of points Y , which mimics a uniform sampling of G.
     </div>
 
   
