@@ -30,8 +30,8 @@
 <div class="content">
   <div class="row">
     <figure style="font-style: italic; font-weight: normal; margin: 0px; padding: 0px; border: 0px">
-     <a href="./files/front_page_image">
-        <img src="./files/front_page_image" width="100%" alt="teaser" style="margin-bottom:10px">
+     <a href="./files/bmvc_fig1">
+        <img src="./files/bmvc_fig1" width="100%" alt="teaser" style="margin-bottom:10px">
 	<!-- <div class="column"> -->
 	     <!-- <img src="./files/overview_car.png" width="50%" alt="teaser" style="margin-bottom:10px"> -->
 	<!-- </div> -->
@@ -39,8 +39,14 @@
 		<!-- <img src="./files/twitter.gif" width="50%" alt="teaser_gif" style="margin-bottom:10px"> -->
 	<!-- </div> -->
       </a>
-      <figcaption> (Left) We use two self-supervised losses to learn scene flow on large unlabeled datasets. The "nearest neighbor loss" penalizes the distance between the predicted point cloud <font color="green">(green)</font> and each predicted point's nearest neighbor in the second point cloud <font color="red">(red)</font>.  To avoid degenerate solutions, we estimate the flow between these predicted points <font color="green">(green)</font> in the reverse direction back to the original point cloud <font color="blue">(blue)</font> to form a cycle. The new predicted points from the cycle <font color="magenta">(purple)</font> should align with the original points <font color="blue">(blue)</font> and the distance between these two set of points, forms our second self-supervised loss: "cycle consistency". (Right) For the NuScenes dataset, scene flow is computed between point cloud at time 't' <font color="red">(red)</font> and 't+1' <font color = "green">(green)</font> and the transformed cloud in shown in <font color="blue">(blue)</font>
-      </figcaption>
+      <figcaption> 
+	We adopt an inpainting-based approach for self-supervised point cloud completion
+to train our network using only partial point clouds. Given a partial point cloud as input, we
+randomly remove regions from it and train the network to complete these regions using the
+input as the pseudo-ground truth. The loss is only applied to the regions which have points in
+the observed input partial point cloud <font color="red">(red)</font>. Since, the network cannot differentiate between
+synthetic and natural occlusions, the network predicts a complete point cloud.   
+     </figcaption>
       <hr>
 
       <!--<sup id="upd1" style="font-style: normal">1. Download our demo <a href="https://github.com/peiyunh/tiny">here</a>.
