@@ -157,15 +157,24 @@ and local levels.
 	    </div>
 	    <h2>Losses</h2>
 	  	<p>
-	  	<b> Nearest Neighbor Loss </b> <br>
-	  	For large unlabeled datasets, since we do not have ground truth labels, we cannot compute the supervised loss.  We use the nearest neighbor of our transformed point as an approximation for the true correspondence. For each transformed point in predicted point cloud, we find its nearest neighbor in <b>Y</b> and compute the Euclidean distance with that point.<br> <br>
-	  	<b>Cycle Consistency Loss </b> <br>
-	  	To avoid degeneracies caused by cycle loss, we incorporate an additional self-supervised loss: cycle-consistency loss. We first estimate the forward flow to get a predicted point cloud. We then compute the scene flow in reverse direction under the cyclic assumption that the prediction of the reverse cycle should be similar to point cloud <b>X</b>. <br> <br>
-		<b> Anchored Cycle Consistency Loss </b> <br> 
-		In order to avoid unstable results and correct the structural distortions, we compute the anchored reverse flow by taking an average of prediction of foward cycle and point cloud <b>Y</b>. <br> <br>
-		<b> Temporal Flip Augmentation </b> <br> 
-		Having a dataset of point cloud sequences in only one direction may generate a motion bias. To reduce this bias, we augment the training set by temporally flipping the point clouds i.e. reversing the flow.
-	  	</p>
+		The standard loss used for comparing two point clouds is the Chamfer Distance (CD). It
+is a bi-directional permutation invariant loss over two point clouds representing the nearest
+neighbor distance between each point and its closest point in the other cloud.
+	  </p>
+		<p>	
+	  	<b> Inpainting-Global Loss </b> <br>
+This loss acts as a global shape loss, focusing on the over-
+all shape of an object. 	  	
+		<b> Inpainting-Local Loss </b> <br>
+While Inpainting-
+Global loss considers the entire input point cloud to find the nearest neighbor, Inpainting-Local loss differs
+in that it only considers the partitioned regions to find the nearest neighbor. Thus, it acts as
+a local shape loss that enables the network to learn region-specific shapes and embeddings
+and focus on the finer details of an object. 		
+			<b> Multi-View Consistency </b> <br> 
+Our method uses multi-view consis-
+tency as an auxiliary loss		
+			</p>
 	  	
     </div>
     
