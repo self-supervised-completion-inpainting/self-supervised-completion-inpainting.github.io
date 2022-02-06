@@ -30,14 +30,14 @@
     
   
   
-  <div class="content" style=’text-align:center;’>
+<!--   <div class="content" style=’text-align:center;’>
   <!-- <a href="./files/cvpr-9651.mp4"> -->
         <!-- <video width="720px" style="display:block; margin: 0 auto;" controls> -->
         <!-- <source src="./files/cvpr-9651.mp4" width="100%" alt="teaser" style="text-align:center"> -->
 	<iframe width="560" height="315" src="https://www.youtube.com/embed/a5HFnDPTNLk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 	<!-- </video> -->
       <!-- </a> -->
-  </div>
+  </div> -->
   
 <div class="content">
   <div class="row">
@@ -71,7 +71,16 @@
     <p>
     <!-- <b>Put your abstract here. </b> -->
     <br>
-      When interacting with highly dynamic environments, scene flow allows autonomous systems to reason about the non-rigid motion of multiple independent objects. This is of particular interest in the field of autonomous driving, in which many cars, people, bicycles, and other objects need to be accurately tracked. Current state of the art methods require annotated scene flow data from autonomous driving scenes to train scene flow networks with supervised learning. As an alternative, we present a method of training scene flow that uses two self-supervised losses, based on nearest neighbors and cycle consistency. These self-supervised losses allow us to train our method on large unlabeled autonomous driving datasets; the resulting method matches current state-of-the-art supervised performance using no real world annotations and exceeds state-of-the-art performance when combining our self-supervised approach with supervised learning on a smaller labeled dataset.
+    When navigating in urban environments, many of the objects that need to be tracked and avoided are heavily occluded. 
+    Planning and tracking using these partial scans can be challenging. The aim of this work is to learn to complete these partial point clouds, 
+    giving us a full understanding of the object's geometry using only partial observations. Previous methods achieve this with the help of complete, 
+    ground-truth annotations of the target objects, which are available only for simulated datasets. However, such ground truth is unavailable for 
+    real-world LiDAR data. In this work, we present a self-supervised point cloud completion algorithm, PointPnCNet, which is trained only on partial 
+    scans without assuming access to complete, ground-truth annotations. Our method achieves this via inpainting. We remove a portion of the input data 
+    and train the network to complete the missing region. As it is difficult to determine which regions were occluded in the initial cloud and which 
+    were synthetically removed, our network learns to complete the full cloud, including the missing regions in the initial partial cloud. We show 
+    that our method outperforms previous unsupervised and weakly-supervised methods on both the synthetic dataset, ShapeNet, and real-world 
+    LiDAR dataset, Semantic KITTI. 
     </p>
   </div>
 
